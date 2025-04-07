@@ -14,12 +14,16 @@ class FirebaseConfig {
     fun firebaseApp(): FirebaseApp {
         try {
             if (FirebaseApp.getApps().isEmpty()) {
-                val serviceAccount = this::class.java.getResourceAsStream("/private-key.json")
-                    ?: throw IllegalStateException("Firebase service account JSON not found in resources")
+                val serviceAccount =
+                    this::class.java.getResourceAsStream("/private-key.json")
+                        ?: throw IllegalStateException(
+                            "Firebase service account JSON not found in resources"
+                        )
 
-                val options = FirebaseOptions.builder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .build()
+                val options =
+                    FirebaseOptions.builder()
+                        .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                        .build()
 
                 FirebaseApp.initializeApp(options)
                 println("FirebaseApp initialized successfully")

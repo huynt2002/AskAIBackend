@@ -31,3 +31,4 @@ google-services.json
 
 # Android Profiling
 *.hprof
+/src/main/resources/private-key.json
