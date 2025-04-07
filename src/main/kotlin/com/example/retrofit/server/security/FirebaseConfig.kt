@@ -6,6 +6,7 @@ import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.FirebaseAuth
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import java.io.ByteArrayInputStream
 
 @Configuration
 class FirebaseConfig {
@@ -14,8 +15,8 @@ class FirebaseConfig {
     fun firebaseApp(): FirebaseApp {
         try {
             if (FirebaseApp.getApps().isEmpty()) {
-                val serviceAccount =
-                    this::class.java.getResourceAsStream("/private-key.json")
+                val serviceAccount = ByteArrayInputStream(System.getenv("FIREBASE_CONFIG"))
+                    //this::class.java.getResourceAsStream("/private-key.json")
                         ?: throw IllegalStateException(
                             "Firebase service account JSON not found in resources"
                         )
