@@ -18,9 +18,9 @@ class MessageController(
     private val useCase: UseCase,
     private val messageRepository: MessageRepository,
 ) {
-    data class MessageResponse(val content: String, val imagePath: String, val createAt: Instant)
+    data class MessageResponse(val content: String, val imagePath: String, val role:String,val createAt: Instant)
 
-    data class MessageRequest(val content: String, val imagePath: String?)
+    data class MessageRequest(val content: String, val imagePath: String?,val role:String,)
 
     @GetMapping
     fun getMessages(@RequestParam conversationId: String): List<MessageResponse> {
@@ -43,6 +43,7 @@ class MessageController(
                     imagePath = body.imagePath ?: "",
                     createAt = Instant.now(),
                     conversationId = conversation.id,
+                    role = body.role
                 )
             )
             .toMessageResponse()

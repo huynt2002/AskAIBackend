@@ -8,5 +8,6 @@ fun Message.toMessageResponse(): MessageController.MessageResponse {
         content = content,
         createAt = createAt,
         imagePath = imagePath,
+        role = role
     )
 }
