@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class Message(
     val content: String,
     val imagePath: String,
+    val role:String,
     val createAt: Instant,
     val conversationId: ObjectId,
 )
